@@ -1,0 +1,39 @@
+global-styling-and-scripts:
+    css:
+        theme:
+            libraries/bootstrap/css/bootstrap.min.css: {minified: true}
+            css/common.css: {}
+            css/style.css: {}
+            css/fonts.css: {}
+            css/variable.css: {}
+    js:
+        libraries/bootstrap/js/bootstrap.min.js: {minified: true}
+        js/script.js: {}
+        libraries/lazyload/jquery.lazyload.min.js: {minified: true}
+    dependencies:
+            - core/jquery
+            - core/jquery.ui.effects.core
+
+swiper:
+    css:
+        theme:
+            https://unpkg.com/swiper@7.3.2/swiper-bundle.min.css: {type: external, minified: true}
+    js:
+        https://unpkg.com/swiper@7.3.2/swiper-bundle.min.js: {type: external, minified: true}
+
+fontawesome:
+    css:
+        theme:
+            libraries/fontawesome/css/all.min.css: {}
+    js:
+        libraries/fontawesome/js/all.min.js: {}
+
+article-highlight:
+    css:
+        theme:
+            css/article-highlight.css: {}
+
+article-teaser:
+    css:
+        theme:
+            css/article-teaser.css: {}

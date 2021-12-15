@@ -1,0 +1,170 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the Bartik theme.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Template\Attribute;
+use \Drupal\block_content\BlockContentInterface;
+use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\media\Entity\Media;
+use Drupal\file\Entity\File;
+use Drupal\node\Entity\Node;
+use Drupal\Core\Url;
+use Drupal\taxonomy\Entity\Term;
+
+/**
+ * Implements hook_preprocess_HOOK() for HTML document templates.
+ *
+ * Adds body classes if certain regions have content.
+ */
+function nhareview_preprocess_html(&$variables) {}
+
+/**
+ * Implements hook_preprocess_HOOK() for page title templates.
+ */
+function nhareview_preprocess_page_title(&$variables) {}
+
+/**
+ * Implements hook_preprocess_HOOK() for maintenance-page.html.twig.
+ */
+function nhareview_preprocess_maintenance_page(&$variables) {}
+
+/**
+ * Implements hook_preprocess_HOOK() for node.html.twig.
+ */
+function nhareview_preprocess_node(&$variables) {}
+
+/**
+ * Implements hook_preprocess_HOOK() for block.html.twig.
+ */
+function nhareview_preprocess_block(&$variables) {}
+
+/**
+ * Implements hook_preprocess_HOOK() for menu.html.twig.
+ */
+function nhareview_preprocess_menu(&$variables) {}
+
+/**
+ * Implements hook_preprocess_HOOK() for menu.html.twig.
+ */
+function nhareview_preprocess(&$variables) {
+    // Get path logo
+    $variables['logo'] = file_url_transform_relative(file_create_url(theme_get_setting('logo.url')));
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for menu.html.twig.
+ */
+function nhareview_preprocess_views_view(&$variables) {
+    $variables['base_path'] = base_path();
+    $view = $variables['view'];
+    $id = $view->id();
+    $name = $variables['display_id'];
+
+    if (($name == 'block_1' || $name == 'block_6') && $id == 'article_view') {
+        
+        $variables['items'] = [];
+        $langCode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+
+        foreach ($view->result as $key => $result){
+            $nid = $result->_entity->nid->value;
+            $node = Node::load($nid);
+            $trans = $node->getTranslation($langCode);
+
+            $title = '';
+            $uri = '';
+            $alt = '';
+            $date = '';
+            $category = '';
+
+            // TITLE
+            if (!empty($result->_entity->title)) {
+                if ($node->hasTranslation($langCode)) {
+                    $title = $trans->getTitle();
+                }
+            }
+
+            // IMG
+            if (!empty($result->_entity->field_image)) {
+                $uri = \Drupal\file\Entity\File::load($result->_entity->field_image[0]->target_id)->uri->value;
+                $alt = $result->_entity->field_image[0]->alt;
+            }
+            
+            // DATE
+            if (!empty($result->_entity->created)) {
+                $date = $result->_entity->created->value;
+            }
+
+            // CATEGORY
+            if (!empty($result->_entity->field_category)) {
+                $term_id = $result->_entity->field_category[0]->target_id;
+                $term_name = \Drupal\taxonomy\Entity\Term::load($term_id)->get('name')->value;
+            }
+
+            // Link
+            $link = Url::fromRoute('entity.node.canonical', ['node' => $nid])->toString();
+
+            $variables['items'][] = [
+                'alt' => $alt,
+                'uri' => $uri,
+                'title' => $title,
+                'date' => $date,
+                'link' => $link,
+                'term_id' => $term_id,
+                'term_name' => $term_name,
+            ];
+        }
+    }
+
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ */
+function nhareview_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+}
+
+/**
+ * Implements hook_form_alter() to add classes to the search form.
+ */
+function nhareview_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+}
+
+/**
+ * Implements hook_theme_suggestions_block_alter() to add classes to the search form.
+ */
+function nhareview_theme_suggestions_block_alter(array &$suggestions, array $variables)
+{
+  // Block suggestions for custom block bundles.
+    if (isset($variables['elements']['content']['#block_content'])) {
+        array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
+    }
+}
+
+/**
+ * Implements template_preprocess_field().
+ */
+function nhareview_preprocess_field(&$variables, $hook) {
+    $element = $variables['element'];
+    if ($element['#field_name'] == 'field_ht_benefits') {
+        $delta = 0;
+        $variables['summary'] = [];
+        while (!empty($element[$delta])) {
+            $variables['summary'][$delta] = $element['#items'][$delta]->getValue()['summary'];
+            $delta++;
+        }
+    }
+}
+
+/**
+ * Implements hook_theme_suggestions_taxonomy_term_alter().
+ */
+function  nhareview_theme_suggestions_page_alter(&$suggestions, &$vars) {
+    if (\Drupal::routeMatch()->getRouteName() == 'entity.taxonomy_term.canonical' && $tid = \Drupal::routeMatch()->getRawParameter('taxonomy_term')) {
+        $term = Term::load($tid);
+        $suggestions[] = 'page__taxonomy__' . $term->getVocabularyId();
+    }
+}

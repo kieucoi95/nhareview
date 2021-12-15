@@ -1,0 +1,66 @@
+{{ attach_library('nhareview/article-highlight') }}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col_nr item_left">
+            {% if items[0] is defined %}
+            <article class="article_item">
+                <div class="img">
+                    <img class="lazy" data-original="{{ items[0].uri | image_style('images_650_x_500') }}" alt="{{ items[0].alt }}">
+                </div>
+                <div class="inner">
+                    <a class="category" href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': items[0].term_id}) }}">{{ items[0].term_name }}</a>
+                    <a href="{{ items[0].link }}"><h2 class="article_title text_3_line">{{ items[0].title }}</h2></a>
+                    <div class="date">{{ items[0].date | date('d/m/Y') }}</div>
+                </div>
+            </article>
+            {% endif %}
+        </div>
+        <div class="col-lg-6 col_nr item_right">
+            <div class="row">
+                <div class="col-lg-12 col_nr">
+                    {% if items[1] is defined %}
+                    <article class="article_item">
+                        <div class="img">
+                            <img class="lazy" data-original="{{ items[1].uri | image_style('images_650_x_250') }}" alt="{{ items[1].alt }}">
+                        </div>
+                        <div class="inner">
+                            <a class="category" href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': items[1].term_id}) }}">{{ items[1].term_name }}</a>
+                            <a href="{{ items[1].link }}"><h2 class="article_title text_3_line">{{ items[1].title }}</h2></a>
+                            <div class="date">{{ items[1].date | date('d/m/Y') }}</div>
+                        </div>
+                    </article>
+                    {% endif %}
+                </div>
+                <div class="col-md-6 col_nr">
+                    {% if items[2] is defined %}
+                    <article class="article_item item_bot">
+                        <div class="img">
+                            <img class="lazy" data-original="{{ items[2].uri | image_style('images_325_x_250') }}" alt="{{ items[2].alt }}">
+                        </div>
+                        <div class="inner">
+                            <a class="category" href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': items[2].term_id}) }}">{{ items[2].term_name }}</a>
+                            <a href="{{ items[2].link }}"><h2 class="article_title text_3_line">{{ items[2].title }}</h2></a>
+                            <div class="date">{{ items[2].date | date('d/m/Y') }}</div>
+                        </div>
+                    </article>
+                    {% endif %}
+                </div>
+                <div class="col-md-6 col_nr">
+                    {% if items[3] is defined %}
+                    <article class="article_item item_bot">
+                        <div class="img">
+                            <img class="lazy" data-original="{{ items[3].uri | image_style('images_325_x_250') }}" alt="{{ items[3].alt }}">
+                        </div>
+                        <div class="inner">
+                            <a class="category" href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': items[3].term_id}) }}">{{ items[3].term_name }}</a>
+                            <a href="{{ items[3].link }}"><h2 class="article_title text_3_line">{{ items[3].title }}</h2></a>
+                            <div class="date">{{ items[3].date | date('d/m/Y') }}</div>
+                        </div>
+                    </article>
+                    {% endif %}
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
