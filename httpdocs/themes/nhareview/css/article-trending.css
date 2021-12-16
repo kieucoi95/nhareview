@@ -1,0 +1,21 @@
+.trending_item:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.trending_item h2 {
+    font-size: 14px;
+    color: var(--dark-color);
+    transition: 0.3s ease-in-out;
+    margin-bottom: 5px;
+}
+
+.trending_item h2:hover {
+    color: var(--green-color);
+}
+
+.trending_item .date {
+    font-size: 11px;
+    color: var(--gray-color);
+    display: inline-flex;
+    align-items: center;
+}

@@ -1,0 +1,10 @@
+<div class="tags_list block_content mt-4">
+    <div class="block_header">
+        <h2 class="block_title">{{ 'Tags' | t }}</h2>
+    </div>
+    <div class="main_block">
+        {% for item in items %}
+        <a href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': item.term_id}) }}" class="tag_item">{{ item.name }}</a>
+        {% endfor %}
+    </div>
+</div>

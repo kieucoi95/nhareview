@@ -33,6 +33,11 @@ article-highlight:
         theme:
             css/article-highlight.css: {}
 
+article-trending:
+    css:
+        theme:
+            css/article-trending.css: {}
+
 article-teaser:
     css:
         theme:

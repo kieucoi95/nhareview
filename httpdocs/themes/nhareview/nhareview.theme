@@ -64,7 +64,7 @@ function nhareview_preprocess_views_view(&$variables) {
     $id = $view->id();
     $name = $variables['display_id'];
 
-    if (($name == 'block_1' || $name == 'block_6') && $id == 'article_view') {
+    if (($name == 'block_1' || $name == 'block_6' || $name == 'block_8') && $id == 'article_view') {
         
         $variables['items'] = [];
         $langCode = \Drupal::languageManager()->getCurrentLanguage()->getId();
@@ -115,6 +115,18 @@ function nhareview_preprocess_views_view(&$variables) {
                 'link' => $link,
                 'term_id' => $term_id,
                 'term_name' => $term_name,
+            ];
+        }
+    }
+
+    if ($name == 'block_1' && $id == 'tags') {
+        $variables['items'] = [];
+        $langCode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+
+        foreach ($view->result as $key => $result){
+            $variables['items'][] = [
+                'name' => $result->_entity->name->value,
+                'term_id' => $result->_entity->tid->value,
             ];
         }
     }

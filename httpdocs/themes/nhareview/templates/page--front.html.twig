@@ -77,7 +77,12 @@
                         {{ drupal_view('article_view', 'block_5') }}
                     </div>
                 </div>
-                <div class="col-lg-4"></div>
+                <div class="col-lg-4 sidebar_left">
+                    <div class="sidebar_content">
+                        {{ drupal_view('article_view', 'block_8') }}
+                        {{ drupal_view('tags', 'block_1') }}
+                    </div>
+                </div>
             </div>
         </div>
     {% endblock %}
