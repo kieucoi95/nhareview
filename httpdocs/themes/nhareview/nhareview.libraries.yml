@@ -8,8 +8,11 @@ global-styling-and-scripts:
             css/variable.css: {}
     js:
         libraries/bootstrap/js/bootstrap.min.js: {minified: true}
-        js/script.js: {}
+        libraries/sticky-sidebar/ResizeSensor.js: {}
+        libraries/sticky-sidebar/sticky-sidebar.js: {}
         libraries/lazyload/jquery.lazyload.min.js: {minified: true}
+        js/script.js: {}
+        
     dependencies:
             - core/jquery
             - core/jquery.ui.effects.core
@@ -42,3 +45,10 @@ article-teaser:
     css:
         theme:
             css/article-teaser.css: {}
+
+article-full:
+    css:
+        theme:
+            css/article-full.css: {}
+    js:
+        js/article-full.js: {}

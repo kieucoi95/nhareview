@@ -25,6 +25,7 @@
         "drupal/devel_kint_extras": "^1.0",
         "drupal/gin": "^3.0@alpha",
         "drupal/gin_toolbar": "^1.0@beta",
+        "drupal/metatag": "^1.16",
         "drupal/pathauto": "^1.8",
         "drupal/twig_tweak": "^2.9",
         "drupal/webform": "^6.1",

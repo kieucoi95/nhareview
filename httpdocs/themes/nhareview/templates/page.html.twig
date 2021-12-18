@@ -45,6 +45,7 @@
      * @ingroup themeable
      */
     #}
+    {{ attach_library('nhareview/fontawesome') }}
     <div class="layout-container">
         <header id="header" >
             {% include directory ~ '/templates/includes/header.html.twig' %}
@@ -52,15 +53,11 @@
         
         {% block body %}
         <div id="main">
-            <div class="container">
             {{ page.content }}
-            </div>
         </div>
         {% endblock %}
                 
-        {% if page.footer %}
-            <footer role="contentinfo">
-                {% include directory ~ '/templates/includes/footer.html.twig' %}
-            </footer>
-        {% endif %}
+        <footer role="contentinfo">
+            {% include directory ~ '/templates/includes/footer.html.twig' %}
+        </footer>
     </div>

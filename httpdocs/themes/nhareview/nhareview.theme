@@ -20,7 +20,9 @@ use Drupal\taxonomy\Entity\Term;
  *
  * Adds body classes if certain regions have content.
  */
-function nhareview_preprocess_html(&$variables) {}
+function nhareview_preprocess_html(&$variables) {
+    
+}
 
 /**
  * Implements hook_preprocess_HOOK() for page title templates.
@@ -64,7 +66,7 @@ function nhareview_preprocess_views_view(&$variables) {
     $id = $view->id();
     $name = $variables['display_id'];
 
-    if (($name == 'block_1' || $name == 'block_6' || $name == 'block_8') && $id == 'article_view') {
+    if (($name == 'block_1' || $name == 'block_6' || $name == 'block_8' || $name == 'block_9') && $id == 'article_view') {
         
         $variables['items'] = [];
         $langCode = \Drupal::languageManager()->getCurrentLanguage()->getId();
@@ -160,15 +162,6 @@ function nhareview_theme_suggestions_block_alter(array &$suggestions, array $var
  * Implements template_preprocess_field().
  */
 function nhareview_preprocess_field(&$variables, $hook) {
-    $element = $variables['element'];
-    if ($element['#field_name'] == 'field_ht_benefits') {
-        $delta = 0;
-        $variables['summary'] = [];
-        while (!empty($element[$delta])) {
-            $variables['summary'][$delta] = $element['#items'][$delta]->getValue()['summary'];
-            $delta++;
-        }
-    }
 }
 
 /**

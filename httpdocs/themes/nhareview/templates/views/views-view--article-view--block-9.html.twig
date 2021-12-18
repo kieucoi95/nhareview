@@ -1,0 +1,19 @@
+{{ attach_library('nhareview/swiper') }}
+
+<div class="swiper related_posts">
+    <div class="swiper-wrapper">
+        {% for item in items %}
+        <div class="swiper-slide">
+            <div class="article_item">
+                <div class="img">
+                    <a href="{{ item.link }}"><img data-src="{{ item.uri | image_style('images_350_x_220') }}" class="swiper-lazy" alt="{{ item.alt }}"></a>
+                </div>
+                <div class="info">
+                    <a href="{{ item.link }}"><h2 class="article_title text_3_line">{{ item.title }}</h2></a>
+                    <div class="date"><i class="far fa-clock"></i> {{ node.getCreatedTime|date('d/m/Y') }}</div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

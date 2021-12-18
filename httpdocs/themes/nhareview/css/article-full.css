@@ -1,0 +1,121 @@
+.node-article-full .article_title {
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -.005em;
+    color: var(--dark-color);
+    margin-bottom: 15px;
+}
+
+.node-article-full .node_header {
+    margin-bottom: 30px;
+}
+
+.node-article-full .node_header .info {
+    display: flex;
+    align-items: center;
+}
+
+.node-article-full .category {
+    display: inline-flex;
+    background: var(--green-color);
+    padding: 0 8px;
+    color: #fff;
+    border-radius: 1px;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    line-height: 22px;
+    margin-right: 15px;
+}
+
+.node-article-full .date {
+    font-size: 13px;
+    color: var(--gray-color);
+    display: inline-flex;
+    align-items: center;
+}
+
+.node-article-full .date svg {
+    margin-right: 5px;
+}
+
+.node-article-full .tags > div {
+    display: flex;
+}
+
+.node-article-full .tags a {
+    background-color: var(--gray-light);
+    padding: 5px 10px;
+    font-size: 14px;
+    color: var(--gray-color);
+    border-radius: 2px;
+    transition: 0.3s ease-in-out;
+    margin: 0 4px;
+}
+
+.node-article-full .tags a:hover {
+    color: #fff;
+    background-color: var(--green-color);
+}
+
+.node-article-full .node_footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.related_posts .img {
+    margin-bottom: 15px;
+}
+
+.related_posts img {
+    width: 100%;
+    transition: opacity .3s ease-in-out;
+}
+
+.related_posts img:hover {
+    opacity: .85;
+}
+
+.related_posts h2.article_title {
+    font-size: 16px;
+    margin-bottom: 0;
+    color: var(--dark-color);
+    font-weight: 500;
+    transition: .3s ease-in-out;
+}
+
+.related_posts h2.article_title:hover {
+    color: var(--green-color);
+}
+
+.related_posts .date {
+    font-size: 11px;
+    color: var(--gray-color);
+    display: inline-flex;
+    align-items: center;
+}
+
+.related_posts .date svg {
+    margin-right: 5px;
+}
+
+.slide_button {
+    position: relative;
+    width: 60px;
+}
+
+.slide_button > div:after {
+    font-size: 21px;
+    color: var(--green-color);
+}
+
+.slide_button .swiper-button-next {
+    right: 0;
+}
+
+.slide_button .swiper-button-prev {
+    left: 0;
+}

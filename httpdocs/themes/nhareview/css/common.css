@@ -5,6 +5,7 @@
 
 a, a:hover {
     text-decoration: none;
+    color: var(--green-color);
 }
 
 img {

@@ -28,7 +28,7 @@
         <div class="breadcrumbs">
             <div class="container">
                 <ul>
-                    <li><a href="{{ url('<front>') }}"><i class="fal fa-home-lg-alt"></i> {{ 'Trang chủ' | t }}</a><i class="fal fa-angle-right"></i></li>
+                    <li><a href="{{ url('<front>') }}">{{ 'Trang chủ' | t }}</a><i class="fal fa-angle-right"></i></li>
                     <li>{{ page['#title'] }}</li>
                 </ul>
             </div>
@@ -41,7 +41,7 @@
                 <div class="col-lg-8">
                     <div class="block_content">
                         <div class="block_header">
-                            <h2 class="block_title">{{ page['#title'] }}</h2>
+                            <h1 class="block_title">{{ page['#title'] }}</h1>
                         </div>
                         {{ drupal_view('article_view', 'block_7') }}
                     </div>

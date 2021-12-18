@@ -1,0 +1,58 @@
+
+{{ attach_library('nhareview/article-full') }}
+{%
+    set classes = [
+        'node-article-full',
+        'block_content',
+        'mb-4'
+    ]
+%}
+<div class="breadcrumbs">
+    <div class="container">
+        <ul>
+            <li><a href="{{ url('<front>') }}">{{ 'Trang chủ' | t }}</a><i class="fal fa-angle-right"></i></li>
+            <li><a href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': node.field_category.entity.tid.value}) }}">{{ node.field_category.entity.name.value }}</a><i class="fal fa-angle-right"></i></li>
+            <li>{{ node.label }}</li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <article{{ attributes.addClass(classes) }}>
+                {{ title_prefix }}
+                {{ title_suffix }}
+                <div class="node_header">
+                    <h1 class="article_title">{{ node.label }}</h1>
+                    <div class="info">
+                        <a class="category" href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': node.field_category.entity.tid.value}) }}">{{ node.field_category.entity.name.value }}</a>
+                        <div class="date"><i class="far fa-clock"></i> {{ node.getCreatedTime|date('d/m/Y') }}</div>
+                    </div>
+                </div>
+                <div class="node_content">
+                    {{ content.body }}
+                </div>
+                <div class="node_footer">
+                    <div class="tags">{{ content.field_tags }}</div>
+                    <div class="share">{{ content.addtoany }}</div>
+                </div>
+            </article>
+            <div class="block_content">
+                <div class="block_header">
+                    <h2 class="block_title">{{ 'Bài viết liên quan' | t }}</h2>
+                    <div class="slide_button">
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+                {{ drupal_view('article_view', 'block_9', node.field_category.entity.tid.value) }}
+            </div>
+        </div>                  
+        <div class="col-lg-4 sidebar_left">
+            <div class="sidebar_content">
+                {{ drupal_view('article_view', 'block_8') }}
+                {{ drupal_view('tags', 'block_1') }}
+            </div>
+        </div>
+    </div>
+</div>
