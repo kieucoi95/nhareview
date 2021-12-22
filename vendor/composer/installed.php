@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'c7a3d95716d1cff06f2a42f8cb2dcda9d26504fd',
+        'reference' => 'b6782b7a611f1d24aa352745c51e1fdaa9211ab4',
         'name' => 'drupal/recommended-project',
         'dev' => true,
     ),
@@ -233,6 +233,15 @@
             'install_path' => __DIR__ . '/../../httpdocs/modules/contrib/admin_toolbar',
             'aliases' => array(),
             'reference' => '3.0.3',
+            'dev_requirement' => false,
+        ),
+        'drupal/advagg' => array(
+            'pretty_version' => '4.1.0',
+            'version' => '4.1.0.0',
+            'type' => 'drupal-module',
+            'install_path' => __DIR__ . '/../../httpdocs/modules/contrib/advagg',
+            'aliases' => array(),
+            'reference' => '8.x-4.1',
             'dev_requirement' => false,
         ),
         'drupal/aggregator' => array(
@@ -856,7 +865,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'c7a3d95716d1cff06f2a42f8cb2dcda9d26504fd',
+            'reference' => 'b6782b7a611f1d24aa352745c51e1fdaa9211ab4',
             'dev_requirement' => false,
         ),
         'drupal/responsive_image' => array(
