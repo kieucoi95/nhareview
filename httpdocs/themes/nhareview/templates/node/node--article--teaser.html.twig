@@ -79,7 +79,7 @@
             <div class="row">
                 <div class="img col-5">
                     <a href="{{ url }}">
-                        <img class="lazy" data-original="{{ node.field_image.entity.fileuri | image_style('images_350_x_220') }}" alt="{{ node.field_image.alt }}">
+                        <img class="lazy" width="350" height="220" data-original="{{ node.field_image.entity.fileuri | image_style('images_350_x_220') }}" alt="{{ node.field_image.alt }}">
                     </a>
                 </div>
                 <div class="content col-7">
@@ -88,9 +88,6 @@
                     <div class="sumary text_3_line">{{ node.body.summary }}</div>
                     <a href="{{ url }}" class="link">{{ 'Xem chi tiết' | t }}</a>
                 </div>
-
             </div>
         </article>
-    
-    
     </div>

@@ -6,6 +6,7 @@
 
 .article_teaser img {
     width: 100%;
+    height: auto;
     transition: opacity .3s ease-in-out;
 }
 
@@ -49,4 +50,14 @@
     margin-top: 9px;
     display: inline-block;
     border-bottom: 1px solid var(--gray-light);
+}
+
+@media(max-width: 480px) {
+    .article_teaser .post_title {
+        font-size: 16px;
+    }
+
+    .article_teaser .sumary {
+        font-size: 11px;
+    }
 }

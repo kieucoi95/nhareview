@@ -119,3 +119,13 @@
 .slide_button .swiper-button-prev {
     left: 0;
 }
+
+@media (max-width: 480px) {
+    .node-article-full .article_title {
+        font-size: 28px;
+    }
+
+    .node-article-full .node_footer {
+        flex-wrap: wrap;
+    }
+}

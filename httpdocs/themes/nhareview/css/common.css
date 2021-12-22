@@ -10,4 +10,5 @@ a, a:hover {
 
 img {
     max-width: 100%;
+    height: auto;
 }
