@@ -1,0 +1,32 @@
+{
+    "name": "drupal/filecache",
+    "description": "A cache backend that uses the file system for storage.",
+    "type": "drupal-module",
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "homepage": "https://drupal.org/project/filecache",
+    "authors": [
+        {
+            "name": "Ognyan Kulev (@ogi)",
+            "homepage": "https://www.drupal.org/u/ogi",
+            "role": "Maintainer"
+        },
+        {
+            "name": "Pieter Frenssen (@pfrenssen)",
+            "homepage": "https://www.drupal.org/u/pfrenssen",
+            "role": "Co-maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://drupal.org/project/issues/filecache",
+        "source": "https://cgit.drupalcode.org/filecache"
+    },
+    "require": {
+        "php": "^7.1 || ^8"
+    },
+    "require-dev": {
+        "drupal/coder": "^8.3.1",
+        "slevomat/coding-standard": "^6 || ^7"
+    }
+}
