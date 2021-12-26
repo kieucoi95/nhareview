@@ -18,16 +18,18 @@
     });
 
     function stickySidebarNr () {
-        if ($('.toolbar-tray-open').length) {
-            var stickySidebar = new StickySidebar('.sidebar_left .sidebar_content', {
-                topSpacing: 160,
-                containerSelector: '.sidebar_left',
-            });
-        } else {
-            var stickySidebar = new StickySidebar('.sidebar_left .sidebar_content', {
-                topSpacing: 80,
-                containerSelector: '.sidebar_left',
-            });
+        if ($('.sidebar_left').length) {
+            if ($('.toolbar-tray-open').length) {
+                var stickySidebar = new StickySidebar('.sidebar_left .sidebar_content', {
+                    topSpacing: 160,
+                    containerSelector: '.sidebar_left',
+                });
+            } else {
+                var stickySidebar = new StickySidebar('.sidebar_left .sidebar_content', {
+                    topSpacing: 80,
+                    containerSelector: '.sidebar_left',
+                });
+            }
         }
     }
 
