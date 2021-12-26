@@ -1,25 +1,9 @@
 (function ($, Drupal, drupalSettings) {
-    $(document).ready(function () {
-        $("img.lazy").lazyload({
-            effect : "fadeIn",
-            threshold : 500
-        });
 
-        setTimeout(() => {
-            if ($('.toolbar-tray-open').length) {
-                var stickySidebar = new StickySidebar('.sidebar_left .sidebar_content', {
-                    topSpacing: 160,
-                    bottomSpacing: 20,
-                    containerSelector: '.sidebar_left',
-                });
-            } else {
-                var stickySidebar = new StickySidebar('.sidebar_left .sidebar_content', {
-                    topSpacing: 80,
-                    containerSelector: '.sidebar_left',
-                });
-            }
-        }, 500);
-        
+    $(document).ready(function () {
+
+        stickySidebarNr();
+        imageLazyLoading();
         $('.open_menu_mobile').click(function (e) { 
             e.preventDefault();
             $('.main_menu').addClass('active');
@@ -32,5 +16,26 @@
             $('.bg_overlay').removeClass('active');
         });
     });
+
+    function stickySidebarNr () {
+        if ($('.toolbar-tray-open').length) {
+            var stickySidebar = new StickySidebar('.sidebar_left .sidebar_content', {
+                topSpacing: 160,
+                containerSelector: '.sidebar_left',
+            });
+        } else {
+            var stickySidebar = new StickySidebar('.sidebar_left .sidebar_content', {
+                topSpacing: 80,
+                containerSelector: '.sidebar_left',
+            });
+        }
+    }
+
+    function imageLazyLoading() {
+        $("img.lazy").lazyload({
+            effect : "fadeIn",
+            threshold : 500
+        });
+    }
 })(jQuery, Drupal, drupalSettings);
 
