@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'd54e2cbb65fe0c4fb2098bac06ed46c39d639c8c',
+        'reference' => '95a5b94697965629dea9a440eb8680f0fbedb2bd',
         'name' => 'drupal/recommended-project',
         'dev' => true,
     ),
@@ -643,15 +643,6 @@
                 0 => '8.9.20',
             ),
         ),
-        'drupal/filecache' => array(
-            'pretty_version' => '1.0.0',
-            'version' => '1.0.0.0',
-            'type' => 'drupal-module',
-            'install_path' => __DIR__ . '/../../httpdocs/modules/contrib/filecache',
-            'aliases' => array(),
-            'reference' => '8.x-1.0',
-            'dev_requirement' => false,
-        ),
         'drupal/filter' => array(
             'dev_requirement' => false,
             'replaced' => array(
@@ -883,7 +874,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'd54e2cbb65fe0c4fb2098bac06ed46c39d639c8c',
+            'reference' => '95a5b94697965629dea9a440eb8680f0fbedb2bd',
             'dev_requirement' => false,
         ),
         'drupal/responsive_image' => array(

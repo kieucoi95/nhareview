@@ -3,6 +3,7 @@
     src: url('../fonts/NotoSans/NotoSansDisplay-Thin.ttf');
     font-weight: 100;
     font-style: normal;
+    font-display: fallback;
 }
 
 @font-face {
@@ -10,6 +11,7 @@
     src: url('../fonts/NotoSans/NotoSansDisplay-ThinItalic.ttf');
     font-weight: 100;
     font-style: italic;
+    font-display: fallback;
 }
 
 @font-face {
@@ -17,6 +19,7 @@
     src: url('../fonts/NotoSans/NotoSansDisplay-ExtraLight.ttf');
     font-weight: 200;
     font-style: normal;
+    font-display: fallback;
 }
 
 @font-face {
@@ -24,6 +27,7 @@
     src: url('../fonts/NotoSans/NotoSansDisplay-ExtraLightItalic.ttf');
     font-weight: 200;
     font-style: italic;
+    font-display: fallback;
 }
 
 @font-face {
@@ -31,6 +35,7 @@
     src: url('../fonts/NotoSans/NotoSansDisplay-Light.ttf');
     font-weight: 300;
     font-style: normal;
+    font-display: fallback;
 }
 
 @font-face {
@@ -38,6 +43,7 @@
     src: url('../fonts/NotoSans/NotoSansDisplay-LightItalic.ttf');
     font-weight: 300;
     font-style: italic;
+    font-display: fallback;
 }
 
 @font-face {
@@ -45,6 +51,7 @@
     src: url('../fonts/NotoSans/NotoSansDisplay-Regular.ttf');
     font-weight: 400;
     font-style: normal;
+    font-display: fallback;
 }
 
 @font-face {
@@ -52,6 +59,7 @@
     src: url('../fonts/NotoSans/NotoSansDisplay-Italic.ttf');
     font-weight: 400;
     font-style: italic;
+    font-display: fallback;
 }
 
 @font-face {
@@ -59,6 +67,7 @@
     src: url('../fonts/NotoSans/NotoSansDisplay-Medium.ttf');
     font-weight: 500;
     font-style: normal;
+    font-display: fallback;
 }
 
 @font-face {
@@ -66,6 +75,7 @@
     src: url('../fonts/NotoSans/NotoSansDisplay-MediumItalic.ttf');
     font-weight: 500;
     font-style: italic;
+    font-display: fallback;
 }
 
 @font-face {
@@ -73,6 +83,7 @@
     src: url('../fonts/NotoSans/NotoSansDisplay-SemiBold.ttf');
     font-weight: 600;
     font-style: normal;
+    font-display: fallback;
 }
 
 @font-face {
@@ -80,6 +91,7 @@
     src: url('../fonts/NotoSans/NotoSansDisplay-SemiBoldItalic.ttf');
     font-weight: 600;
     font-style: italic;
+    font-display: fallback;
 }
 
 @font-face {
@@ -87,6 +99,7 @@
     src: url('../fonts/NotoSans/NotoSansDisplay-Bold.ttf');
     font-weight: 700;
     font-style: normal;
+    font-display: fallback;
 }
 
 @font-face {
@@ -94,6 +107,7 @@
     src: url('../fonts/NotoSans/NotoSansDisplay-BoldItalic.ttf');
     font-weight: 700;
     font-style: italic;
+    font-display: fallback;
 }
 
 @font-face {
@@ -101,6 +115,7 @@
     src: url('../fonts/NotoSans/NotoSansDisplay-ExtraBold.ttf');
     font-weight: 800;
     font-style: normal;
+    font-display: fallback;
 }
 
 @font-face {
@@ -108,6 +123,7 @@
     src: url('../fonts/NotoSans/NotoSansDisplay-ExtraBoldItalic.ttf');
     font-weight: 800;
     font-style: italic;
+    font-display: fallback;
 }
 
 @font-face {
@@ -115,6 +131,7 @@
     src: url('../fonts/NotoSans/NotoSansDisplay-Black.ttf');
     font-weight: 800;
     font-style: normal;
+    font-display: fallback;
 }
 
 @font-face {
@@ -122,6 +139,7 @@
     src: url('../fonts/NotoSans/NotoSansDisplay-BlackItalic.ttf');
     font-weight: 800;
     font-style: italic;
+    font-display: fallback;
 }
 
 * {
