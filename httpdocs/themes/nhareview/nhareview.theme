@@ -168,8 +168,24 @@ function nhareview_preprocess_field(&$variables, $hook) {
  * Implements hook_theme_suggestions_taxonomy_term_alter().
  */
 function  nhareview_theme_suggestions_page_alter(&$suggestions, &$vars) {
-    if (\Drupal::routeMatch()->getRouteName() == 'entity.taxonomy_term.canonical' && $tid = \Drupal::routeMatch()->getRawParameter('taxonomy_term')) {
+
+    $path_args = explode('/', trim(\Drupal::service('path.current')->getPath(), '/'));
+    $suggestions = theme_get_suggestions($path_args, 'page');
+    $http_error_suggestions = [
+        'system.401' => 'page__401',
+        'system.403' => 'page__403',
+        'system.404' => 'page__404',
+    ];
+    $route_name = \Drupal::routeMatch()->getRouteName();
+
+    if ($route_name == 'entity.taxonomy_term.canonical' && $tid = \Drupal::routeMatch()->getRawParameter('taxonomy_term')) {
         $term = Term::load($tid);
         $suggestions[] = 'page__taxonomy__' . $term->getVocabularyId();
     }
+
+    if (isset($http_error_suggestions[$route_name])) {
+        $suggestions[] = $http_error_suggestions[$route_name];
+    }
+
+    return $suggestions;
 }
