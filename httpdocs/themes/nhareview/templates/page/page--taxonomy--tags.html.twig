@@ -45,6 +45,12 @@
                 </div>
                 <div class="col-lg-4 sidebar_left">
                     <div class="sidebar_content">
+                        <div class="block_content menu_product">
+                            <div class="block_header">
+                                <h2 class="block_title">{{ 'Chuyên mục sản phẩm' | t }}</h2>
+                            </div>
+                            {{ drupal_menu('product') }}
+                        </div>
                         {{ drupal_view('article_view', 'block_8') }}
                         {{ drupal_view('tags', 'block_1') }}
                     </div>

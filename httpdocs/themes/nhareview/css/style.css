@@ -286,6 +286,36 @@ footer {
     font-weight: 600;
 }
 
+.menu_product ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu_product ul a {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+    font-weight: 600;
+    color: #000;
+    transition: 0.3s;
+}
+
+.menu_product ul a::before {
+    content: url(../images/accepted.png);
+    margin-right: 10px;
+}
+
+.menu_product ul a:hover {
+    color: var(--main-color);
+}
+
+.menu_product ul li:last-child a {
+    margin-bottom: 0;
+}
+
 @media(max-width: 992px) {
     .open_menu_mobile {
         font-size: 20px;
