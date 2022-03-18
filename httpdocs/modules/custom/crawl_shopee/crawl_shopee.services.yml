@@ -1,0 +1,8 @@
+services:
+  crawl_shopee.crawl_shopee_client:
+    class: Drupal\crawl_shopee\Services\CrawlShopeeClientService
+    arguments: ['@http_client_factory']
+
+  crawl_shopee.insert_product:
+    class: Drupal\crawl_shopee\Services\InsertProductService
+    arguments: []

@@ -30,6 +30,7 @@
         "drupal/minifyhtml": "^1.10",
         "drupal/pathauto": "^1.8",
         "drupal/twig_tweak": "^2.9",
+        "drupal/ultimate_cron": "^2.0@alpha",
         "drupal/webform": "^6.1",
         "drupal/xmlsitemap": "^1.2"
     },

@@ -24,12 +24,23 @@ swiper:
     js:
         https://unpkg.com/swiper@7.3.2/swiper-bundle.min.js: {type: external, minified: true}
 
+rating:
+    css:
+        theme:
+            https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css: {type: external, minified: true}
+    js:
+        https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js: {type: external, minified: true}
+
 fontawesome:
     css:
         theme:
             libraries/fontawesome/css/all.min.css: {}
     js:
         libraries/fontawesome/js/all.min.js: {}
+
+front:
+    js:
+        js/front.js: {}
 
 article-highlight:
     css:
@@ -52,3 +63,17 @@ article-full:
             css/article-full.css: {}
     js:
         js/article-full.js: {}
+
+product-full:
+    css:
+        theme:
+            css/product_full.css: {}
+    js:
+        js/product_full.js: {}
+
+product-teaser:
+    css:
+        theme:
+            css/product_teaser.css: {}
+    js:
+        js/product_teaser.js: {}

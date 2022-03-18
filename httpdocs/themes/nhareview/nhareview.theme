@@ -40,6 +40,21 @@ function nhareview_preprocess_maintenance_page(&$variables) {}
 function nhareview_preprocess_node(&$variables) {}
 
 /**
+ * Implements hook_preprocess_HOOK() for node.html.twig.
+ */
+function nhareview_preprocess_page(&$variables) {
+    $vid = 'category';
+    $terms =\Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid);
+    foreach ($terms as $term) {
+        $variables['term_data'][] = array(
+            'id' => $term->tid,
+            'name' => $term->name,
+        );
+    }
+
+}
+
+/**
  * Implements hook_preprocess_HOOK() for block.html.twig.
  */
 function nhareview_preprocess_block(&$variables) {}
@@ -55,6 +70,7 @@ function nhareview_preprocess_menu(&$variables) {}
 function nhareview_preprocess(&$variables) {
     // Get path logo
     $variables['logo'] = file_url_transform_relative(file_create_url(theme_get_setting('logo.url')));
+    $variables['shopee_affiliate'] = \Drupal::config('crawl_shopee.settings')->get('shopee_affiliate');
 }
 
 /**

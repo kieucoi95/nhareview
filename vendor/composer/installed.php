@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '95a5b94697965629dea9a440eb8680f0fbedb2bd',
+        'reference' => 'f409557afc1b7b910858fbcfe4f500d06553048b',
         'name' => 'drupal/recommended-project',
         'dev' => true,
     ),
@@ -874,7 +874,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '95a5b94697965629dea9a440eb8680f0fbedb2bd',
+            'reference' => 'f409557afc1b7b910858fbcfe4f500d06553048b',
             'dev_requirement' => false,
         ),
         'drupal/responsive_image' => array(
@@ -1007,6 +1007,15 @@
             'install_path' => __DIR__ . '/../../httpdocs/modules/contrib/twig_tweak',
             'aliases' => array(),
             'reference' => '8.x-2.9',
+            'dev_requirement' => false,
+        ),
+        'drupal/ultimate_cron' => array(
+            'pretty_version' => '2.0.0-alpha5',
+            'version' => '2.0.0.0-alpha5',
+            'type' => 'drupal-module',
+            'install_path' => __DIR__ . '/../../httpdocs/modules/contrib/ultimate_cron',
+            'aliases' => array(),
+            'reference' => '8.x-2.0-alpha5',
             'dev_requirement' => false,
         ),
         'drupal/update' => array(

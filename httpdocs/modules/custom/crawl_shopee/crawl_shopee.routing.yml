@@ -1,0 +1,15 @@
+crawl_shopee.insert_product:
+  path: '/admin/crawl-shopee'
+  defaults:
+    _form: '\Drupal\crawl_shopee\Form\InsertProductForm'
+    _title: 'Insert product from shopee'
+  requirements:
+    _permission: 'administer site configuration'
+
+crawl_shopee.shopee_affiliate:
+  path: '/admin/shopee-affiliate'
+  defaults:
+    _form: '\Drupal\crawl_shopee\Form\ConfigShopeeAffiliateForm'
+    _title: 'Configuaration shopee affiliate'
+  requirements:
+    _permission: 'administer site configuration'

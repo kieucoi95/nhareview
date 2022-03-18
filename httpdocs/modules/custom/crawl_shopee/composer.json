@@ -1,0 +1,13 @@
+{
+    "name": "crawl_shopee",
+    "type": "drupal-module",
+    "description": "Crawl data from shopee",
+    "keywords": [
+    ],
+    "homepage": "https://www.drupal.org/project/crawl_shopee",
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/crawl_shopee",
+        "source": "http://cgit.drupalcode.org/crawl_shopee",
+    },
+}

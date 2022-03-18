@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Contains crawl_shopee.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function crawl_shopee_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the crawl_shopee module.
+    case 'help.page.crawl_shopee':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Crawl data from shopee') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function crawl_shopee_theme() {
+  return [
+    'crawl_shopee' => [
+      'render element' => 'children',
+    ],
+  ];
+}
+
+function crawl_shopee_cron() {
+  \Drupal::logger('crawl_shopee')->notice('Start Job Insert Product... \n');
+
+  $response = \Drupal::service('crawl_shopee.insert_product')->insertProductData();
+
+  $result = \Drupal\crawl_shopee\InsertProduct::InsertProduct($ShopeeArr);
+  \Drupal::logger('crawl_shopee')->notice('\n Done Job Insert Product!');
+
+}

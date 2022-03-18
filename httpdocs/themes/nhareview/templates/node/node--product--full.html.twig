@@ -1,0 +1,194 @@
+{#
+    /**
+    * @file
+    * Theme override to display a node.
+    *
+    * Available variables:
+    * - node: The node entity with limited access to object properties and methods.
+    * Only method names starting with "get", "has", or "is" and a few common
+    * methods such as "id", "label", and "bundle" are available. For example:
+    * - node.getCreatedTime() will return the node creation timestamp.
+    * - node.hasField('field_example') returns TRUE if the node bundle includes
+    * field_example. (This does not indicate the presence of a value in this
+    * field.)
+    * - node.isPublished() will return whether the node is published or not.
+    * Calling other methods, such as node.delete(), will result in an exception.
+    * See \Drupal\node\Entity\Node for a full list of public properties and
+    * methods for the node object.
+    * - label: The title of the node.
+    * - content: All node items. Use {{ content }} to print them all,
+    * or print a subset such as {{ content.field_example }}. Use
+    * {{ content|without('field_example') }} to temporarily suppress the printing
+    * of a given child element.
+    * - author_picture: The node author user entity, rendered using the "compact"
+    * view mode.
+    * - metadata: Metadata for this node.
+    * - date: Themed creation date field.
+    * - author_name: Themed author name field.
+    * - url: Direct URL of the current node.
+    * - display_submitted: Whether submission information should be displayed.
+    * - attributes: HTML attributes for the containing element.
+    * The attributes.class element may contain one or more of the following
+    * classes:
+    * - node: The current template type (also known as a "theming hook").
+    * - node--type-[type]: The current node type. For example, if the node is an
+    * "Article" it would result in "node--type-article". Note that the machine
+    * name will often be in a short form of the human readable label.
+    * - node--view-mode-[view_mode]: The View Mode of the node; for example, a
+    * teaser would result in: "node--view-mode-teaser", and
+    * full: "node--view-mode-full".
+    * The following are controlled through the node publishing options.
+    * - node--promoted: Appears on nodes promoted to the front page.
+    * - node--sticky: Appears on nodes ordered above other non-sticky nodes in
+    * teaser listings.
+    * - node--unpublished: Appears on unpublished nodes visible only to site
+    * admins.
+    * - title_attributes: Same as attributes, except applied to the main title
+    * tag that appears in the template.
+    * - content_attributes: Same as attributes, except applied to the main
+    * content tag that appears in the template.
+    * - author_attributes: Same as attributes, except applied to the author of
+    * the node tag that appears in the template.
+    * - title_prefix: Additional output populated by modules, intended to be
+    * displayed in front of the main title tag that appears in the template.
+    * - title_suffix: Additional output populated by modules, intended to be
+    * displayed after the main title tag that appears in the template.
+    * - view_mode: View mode; for example, "teaser" or "full".
+    * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+    * - page: Flag for the full page state. Will be true if view_mode is 'full'.
+    * - readmore: Flag for more state. Will be true if the teaser content of the
+    * node cannot hold the main body content.
+    * - logged_in: Flag for authenticated user status. Will be true when the
+    * current user is a logged-in member.
+    * - is_admin: Flag for admin user status. Will be true when the current user
+    * is an administrator.
+    *
+    * @see template_preprocess_node()
+    *
+    * @todo Remove the id attribute (or make it a class), because if that gets
+    * rendered twice on a page this is invalid CSS for example: two lists
+    * in different view modes.
+    */
+    #}
+    {{ attach_library('nhareview/rating') }}
+    {{ attach_library('nhareview/swiper') }}
+    {{ attach_library('nhareview/product-full') }}
+    <div class="container">
+        <div class="breadcrumbs">
+            <div class="container">
+                <ul>
+                    <li><a href="{{ url('<front>') }}">{{ 'Trang chủ' | t }}</a><i class="fal fa-angle-right"></i></li>
+                    {#<li><a
+                            href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': node.field_category.entity.tid.value}) }}">{{
+                            node.field_category.entity.name.value }}</a><i class="fal fa-angle-right"></i></li>#}
+                    <li><span>{{ node.label }}</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row row_custom">
+            <div class="col-md-10 col_custom">
+                <div{{ attributes }}>
+                    {{ title_prefix }}
+                    {{ title_suffix }}
+                    <div class="product_full">
+                        <div class="product_header card_custom">
+                            <div class="row">
+                                <div class="col-md-6"> 
+                                    <div class="gallery_slide">
+                                        <div class="swiper gallery">
+                                            <div class="swiper-wrapper">
+                                                {% for item in node.field_gallery %}
+                                                <div class="swiper-slide">
+                                                    <a href="https://shopee.vn/mua-sach-nhanh-i.{{ node.field_id.value }}?{{ shopee_affiliate }}" rel="nofollow" target="_blank">
+                                                        <img src="https://cf.shopee.vn/file/{{ item.value }}" alt="{{ node.label }}"/>
+                                                    </a>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <div thumbsSlider="gallery" class="swiper gallery_thumb">
+                                            <div class="swiper-wrapper">
+                                                {% for item in node.field_gallery %}
+                                                <div class="swiper-slide">
+                                                    <img src="https://cf.shopee.vn/file/{{ item.value }}" alt="{{ node.label }}" />
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h1 class="page-title">{{ node.label }} | {{ 'Mới nhất' | t }} | {{ 'Giảm giá' | t }}</h1>
+                                    <div class="info-wrapper">
+                                        <div class="rating-star">
+                                            <span>{{ node.field_rating_star.value |round(1, 'floor') }}</span>
+                                            <div class="rating_product" data-rating="{{ node.field_rating_star.value |round(1, 'floor') }}"></div>
+                                        </div>
+                                        <div class="like">
+                                            <i class="fad fa-heart-circle"></i>
+                                            {% if node.field_liked_count.value > 1000 %}
+                                            <span>{{(node.field_liked_count.value/1000) | number_format(1, '.', ',') }}k</span>
+                                            {% else %}
+                                            <span>{{ node.field_liked_count.value }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    {% if node.field_historical_sold.value > 1000 %}
+                                    <div class="brand"><span>{{ 'Đã bán:' | t }}</span> <b>{{(node.field_historical_sold.value/1000) | number_format(1, '.', ',') }}k</b></div>
+                                    {% else %}
+                                    <div class="brand"><span>{{ 'Đã bán:' | t }}</span> <b>{{ node.field_historical_sold.value }}</b></div>
+                                    {% endif %}
+                                    {% if node.field_brand.value %}
+                                    <div class="brand"><span>{{ 'Thương hiệu:' | t }}</span> <b>{{ node.field_brand.value }}</b></div>
+                                    {% endif %}
+                                    <div class="brand"><span>{{ 'Gửi từ:' | t }}</span> <b>{{ node.field_shop_location.value }}</b></div>
+                                    <div class="social_share">{{ content.addtoany }}</div>
+                                    <div class="price">
+                                        <div class="price-raw"><span class="currncy">₫</span>{{ (node.field_price.value/100000) | number_format(0, '.', ',') }}</div>
+                                        {% if node.field_price_before_discount.value > 0 %}
+                                        <div class="price-before"><span class="currncy">₫</span>{{ (node.field_price_before_discount.value/100000) | number_format(0, '.', ',') }}</div>
+                                        {% endif %}
+                                        {% if node.field_discount.value > 0 %}
+                                        <div class="discount"><span>{{ 'Giảm' | t }}</span>{{ node.field_discount.value }}%</div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="buy-now"><a href="https://shopee.vn/mua-sach-nhanh-i.{{ node.field_id.value }}?{{ shopee_affiliate }}" rel="nofollow">{{ 'Mua ngay' | t }}</a></div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="product_description card_custom">
+                            <h2 class="block_title">{{ 'Thông tin mô tả' | t }} {{ node.label }}</h2>
+                            {{ content.body }}
+                            <h2 class="block_title">{{ 'Thông tin chiết tiết' | t }}</h2>
+                            <div class="gt">
+                                <p><i class="fa fa-star" aria-hidden="true"></i> Hiện tại <a href="/" class="txt-bold">Nhà Review</a> là đơn vị báo giá cung cấp sách nhanh và tốt nhất thị trường, Chúng tôi tổng hợp sản phẩm chất lượng giảm giá, Khuyến mại gửi tới khách hàng những lựa chọn tốt nhất. 
+                                    <a href="/" class="txt-bold">Nhà Review</a> đang hợp tác với sàn TMĐT Lazada, Shopee, TiKi, SenDo Việt Nam tiếp thị sản phẩm và đánh giá sự uy tín của người bán không trực tiếp bán hàng.</p>
+                                <p><i class="fa fa-star" aria-hidden="true"></i> Hãy mua  <b>{{ node.label }}</b> qua Website trung gian Lazada, Shopee, Tiki hoặc Sendo... bằng cách kéo lên trên và chọn <a href="https://shopee.vn/Nhà-Review-i.{{ node.field_id.value }}?{{ shopee_affiliate }}" target="_blank" rel="nofollow"><i class="fa fa-external-link"></i> Mua sản phẩm</a> để được trải nghiệm mua hàng online giá ưu đãi nhất.</p>
+                                <h3 class="custom-mota-h3">Quyền lợi khi mua "<b>{{ node.label }}</b>" online:</h3>
+                                <p><i class="fa fa-star" aria-hidden="true"></i> Mua hàng tại nhà &amp; Thanh toán khi nhận hàng</p>
+                                <p><i class="fa fa-star" aria-hidden="true"></i> Sử dụng Mã Giảm Giá để mua hàng rẻ hơn</p>
+                                <p><i class="fa fa-star" aria-hidden="true"></i> Thanh toán an toàn, bảo mật, đáp ứng tiêu chuẩn Quốc tế.</p>
+                                <p><i class="fa fa-star" aria-hidden="true"></i> Lựa chọn nhà vận chuyển giá rẻ, giao hàng đúng hạn, đảm bảo, uy tín nhất.</p>
+                                <p><i class="fa fa-star" aria-hidden="true"></i> Thủ tục đổi trả dễ dàng</p>
+                                <p><i class="fa fa-star" aria-hidden="true"></i> Sản phẩm được bảo hành dài hạn.</p>
+                                <p><i class="fa fa-star" aria-hidden="true"></i> Đội ngũ hỗ trợ 24/7 tận tâm và chuyên nghiệp</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="product_related">
+                    <h2 class="block-title">{{ 'Sách liên quan' | t }}</h2>
+                    {{ drupal_view('product', 'block_3', node.id, node.field_category.entity.tid.value ) }}
+                </div>
+            </div>
+            <div class="col-md-2 col_custom">
+                <div class="side_right">
+                    {{ drupal_view('product', 'block_2', node.id) }}
+                </div>
+            </div>
+        </div>
+    </div>

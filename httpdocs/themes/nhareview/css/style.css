@@ -2,6 +2,14 @@ body {
     background-color: var(--gray-light);
 }
 
+.col_custom {
+    padding: 0 5px!important;
+}
+
+.row_custom {
+    margin: 0 -5px!important;
+}
+
 /* Header */
 #header {
     padding-bottom: 76px;
@@ -56,6 +64,52 @@ body {
     padding: 25px;
     background-color: #fff;
     border: 1px solid #f4f4f4;
+}
+
+nav.pager {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.pager__item {
+    background: #fff;
+    margin: 0 2px;
+    display: inline-flex;
+    border-radius: 3px;
+    padding: 4px 10px;
+    
+}
+
+.pager__item.is-active {
+    background: var(--main-color);
+}
+
+.pager__item.is-active a {
+    color: #fff;
+}
+
+li.pager__item a {
+    color: var(--main-color);
+    font-weight: 500;
+}
+
+.swiper {
+    padding: 10px 2px 30px!important;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    background: #fff;
+    border-radius: 50%;
+    width: 2rem!important;
+    height: 2rem!important;
+    box-shadow: 0 0.0625rem 0.125rem 0 rgb(0 0 0 / 10%)!important;
+}
+
+.swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 1rem!important;
+    font-weight: 600;
+    color: var(--main-color);
 }
 
 .block_content:not(:last-child) {
@@ -196,6 +250,40 @@ footer {
 
 .bg_overlay.active {
     display: block;
+}
+
+.views-exposed-form {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    justify-content: flex-end;
+}
+
+.views-exposed-form .form-item {
+    margin-right: .5rem;
+}
+
+
+.views-exposed-form input[name="title"],
+.views-exposed-form select {
+    border: none;
+    height: 2.5rem;
+    padding: 0 1rem;
+    outline: none;
+    border-radius: 3px;
+    color: #000;
+    margin: 0;
+}
+
+.views-exposed-form input[type="submit"] {
+    background: var(--main-color);
+    border: none;
+    height: 2.5rem;
+    border-radius: 3px;
+    color: #fff;
+    padding: 0 1rem;
+    font-weight: 600;
 }
 
 @media(max-width: 992px) {

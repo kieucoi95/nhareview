@@ -1,0 +1,13 @@
+crawl_shopee.admin:
+  title: 'Insert product'
+  description: 'Insert product from shopee'
+  parent: system.admin_config_system
+  route_name: crawl_shopee.insert_product
+  weight: 100
+
+crawl_shopee.admin_1:
+  title: 'Shopee affiliate'
+  description: 'Configuaration shopee affiliate'
+  parent: system.admin_config_system
+  route_name: crawl_shopee.shopee_affiliate
+  weight: 99

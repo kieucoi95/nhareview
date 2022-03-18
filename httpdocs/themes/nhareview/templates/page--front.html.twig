@@ -42,6 +42,7 @@
     {% extends "page.html.twig" %}
     
     {% block body %}
+        {{ attach_library('nhareview/front') }}
         <div class="block_highlight">
             {{ drupal_view('article_view', 'block_1') }}
         </div>
@@ -50,11 +51,20 @@
                 <div class="col-lg-8">
                     <div class="block_content">
                         <div class="block_header">
-                            <h2 class="block_title">{{ 'Công nghệ' | t }}</h2>
-                            <a href="/cong-nghe" class="view_all">{{ 'Xem tất cả' | t }}</a>
+                            <h2 class="block_title">{{ 'Sản phẩm mới' | t }}</h2>
+                            <a href="/product" class="view_all">{{ 'Xem tất cả' | t }}</a>
                         </div>
-                        {{ drupal_view('article_view', 'block_2') }}
+                        {{ drupal_view('product', 'block_1') }}
                     </div>
+                    {% for item in term_data %}
+                    <div class="block_content">
+                        <div class="block_header">
+                            <h2 class="block_title">{{ item.name }}</h2>
+                            <a href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': item.id}) }}" class="view_all">{{ 'Xem tất cả' | t }}</a>
+                        </div>
+                        {{ drupal_view('product', 'block_1', item.id) }}
+                    </div>
+                    {% endfor %}
                     <div class="block_content">
                         <div class="block_header">
                             <h2 class="block_title">{{ 'Làm đẹp' | t }}</h2>
