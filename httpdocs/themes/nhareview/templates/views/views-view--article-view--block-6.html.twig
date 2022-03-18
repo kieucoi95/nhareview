@@ -5,7 +5,7 @@
             {% if items[0] is defined %}
             <article class="article_item">
                 <div class="img">
-                    <img class="lazy" width="650" height="500" data-original="{{ items[0].uri | image_style('images_650_x_500') }}" alt="{{ items[0].alt }}">
+                    <img class="lazy" width="650" height="500" src="{{ items[0].uri | image_style('images_650_x_500') }}" alt="{{ items[0].alt }}">
                 </div>
                 <div class="inner">
                     <a class="category" href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': items[0].term_id}) }}">{{ items[0].term_name }}</a>
@@ -21,7 +21,7 @@
                     {% if items[1] is defined %}
                     <article class="article_item">
                         <div class="img">
-                            <img class="lazy" width="650" height="250" data-original="{{ items[1].uri | image_style('images_650_x_250') }}" alt="{{ items[1].alt }}">
+                            <img class="lazy" width="650" height="250" src="{{ items[1].uri | image_style('images_650_x_250') }}" alt="{{ items[1].alt }}">
                         </div>
                         <div class="inner">
                             <a class="category" href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': items[1].term_id}) }}">{{ items[1].term_name }}</a>
@@ -35,7 +35,7 @@
                     {% if items[2] is defined %}
                     <article class="article_item item_bot">
                         <div class="img">
-                            <img class="lazy" width="325" height="250" data-original="{{ items[2].uri | image_style('images_325_x_250') }}" alt="{{ items[2].alt }}">
+                            <img class="lazy" width="325" height="250" src="{{ items[2].uri | image_style('images_325_x_250') }}" alt="{{ items[2].alt }}">
                         </div>
                         <div class="inner">
                             <a class="category" href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': items[2].term_id}) }}">{{ items[2].term_name }}</a>
@@ -49,7 +49,7 @@
                     {% if items[3] is defined %}
                     <article class="article_item item_bot">
                         <div class="img">
-                            <img class="lazy" width="325" height="250" data-original="{{ items[3].uri | image_style('images_325_x_250') }}" alt="{{ items[3].alt }}">
+                            <img class="lazy" width="325" height="250" src="{{ items[3].uri | image_style('images_325_x_250') }}" alt="{{ items[3].alt }}">
                         </div>
                         <div class="inner">
                             <a class="category" href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': items[3].term_id}) }}">{{ items[3].term_name }}</a>
