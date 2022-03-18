@@ -30,12 +30,12 @@ class CrawlShopeeClientService {
    *
    * @return array
    */
-  public function getListItem($limit, $keyword) {
+  public function getListItem($keyword) {
     $response = $this->client->get('search/search_items', [
       'query' => [
         'by' => 'relevancy',
         'keyword' => $keyword,
-        'limit' => $limit,
+        'limit' => 10,
         'newest' => 0,
         'order' => 'desc',
         'page_type' => 'search',

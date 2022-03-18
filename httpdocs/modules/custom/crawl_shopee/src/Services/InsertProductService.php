@@ -34,8 +34,10 @@ class InsertProductService {
 
     foreach ($term_data as &$category) {
 
-      // $response = \Drupal::service('crawl_shopee.crawl_shopee_client')->getListItem(10, $category['name']);
-      $response = Json::decode(file_get_contents('https://shopee.vn/api/v4/search/search_items?by=relevancy&keyword=' . $category['name'] . '&limit=' . $limit . '&newest=0&order=desc&page_type=search&scenario=PAGE_GLOBAL_SEARCH&version=2'));
+      $response = \Drupal::service('crawl_shopee.crawl_shopee_client')->getListItem($category['name']);
+      dump($response);
+      die();
+      // $response = Json::decode(file_get_contents('https://shopee.vn/api/v4/search/search_items?by=relevancy&keyword=' . $category['name'] . '&limit=' . $limit . '&newest=0&order=desc&page_type=search&scenario=PAGE_GLOBAL_SEARCH&version=2'));
       
       $ShopeeArr = [];
       foreach ($response['items'] as &$value) {
