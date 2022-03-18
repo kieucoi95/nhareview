@@ -56,7 +56,15 @@
             {{ page.content }}
         </div>
         {% endblock %}
-                
+        <div id="ads-banner">
+            <div class="container">
+                <div class="block_content">
+                    <div class="container">
+                        {{ drupal_entity('block', 'adsaffiliate') }}
+                    </div>
+                </div>
+            </div>
+        </div>
         <footer role="contentinfo">
             {% include directory ~ '/templates/includes/footer.html.twig' %}
         </footer>
