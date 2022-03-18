@@ -94,7 +94,7 @@ li.pager__item a {
     font-weight: 500;
 }
 
-.swiper {
+.swiper:not(.gallery, .gallery_thumb) {
     padding: 10px 2px 30px!important;
 }
 

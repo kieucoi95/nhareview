@@ -78,15 +78,15 @@
             <div class="container">
                 <ul>
                     <li><a href="{{ url('<front>') }}">{{ 'Trang chủ' | t }}</a><i class="fal fa-angle-right"></i></li>
-                    {#<li><a
+                    <li><a
                             href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': node.field_category.entity.tid.value}) }}">{{
-                            node.field_category.entity.name.value }}</a><i class="fal fa-angle-right"></i></li>#}
+                            node.field_category.entity.name.value }}</a><i class="fal fa-angle-right"></i></li>
                     <li><span>{{ node.label }}</span></li>
                 </ul>
             </div>
         </div>
         <div class="row row_custom">
-            <div class="col-md-10 col_custom">
+            <div class="col-lg-9 col_custom">
                 <div{{ attributes }}>
                     {{ title_prefix }}
                     {{ title_suffix }}
@@ -158,7 +158,7 @@
                             </div>
                         </div>
     
-                        <div class="product_description card_custom">
+                        <div class="product_description card_custom block_content">
                             <h2 class="block_title">{{ 'Thông tin mô tả' | t }} {{ node.label }}</h2>
                             {{ content.body }}
                             <h2 class="block_title">{{ 'Thông tin chiết tiết' | t }}</h2>
@@ -179,15 +179,14 @@
                         </div>
                     </div>
                 </div>
-    
-                <div class="product_related">
-                    <h2 class="block-title">{{ 'Sách liên quan' | t }}</h2>
-                    {{ drupal_view('product', 'block_3', node.id, node.field_category.entity.tid.value ) }}
-                </div>
+
             </div>
-            <div class="col-md-2 col_custom">
-                <div class="side_right">
-                    {{ drupal_view('product', 'block_2', node.id) }}
+            <div class="col-lg-3 sidebar_left">
+                <div class="sidebar_content">
+                    <div class="block_header">
+                        <h2 class="block_title">{{ 'Sản phẩm liên quan' | t }}</h2>
+                    </div>
+                    {{ drupal_view('product', 'block_3', node.field_category.entity.tid.value, node.id) }}
                 </div>
             </div>
         </div>
