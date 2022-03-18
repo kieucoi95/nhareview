@@ -4,6 +4,7 @@ namespace Drupal\crawl_shopee;
 
 
 use Drupal\node\Entity\Node;
+use Drupal\Component\Serialization\Json;
 
 class InsertProduct {
 
@@ -24,6 +25,11 @@ class InsertProduct {
       ->execute();
       $term = array_values($terms)[0];
 
+      $tiki = Json::decode(file_get_contents('https://tiki.vn/api/v2/products?limit=1&include=advertisement&aggregations=2&trackity_id=18af4b37-f4b3-f3a5-ed33-d1fe8a500b78&q=' . rawurlencode($nid['name']) . '&ref=hot-keyword'));
+      $tiki_link = 'https://tiki.vn/' . $tiki['data'][0]['url_key'] . '.html';
+      $tiki_price = $tiki['data'][0]['price'];
+      $accesstrade_tiki = \Drupal::config('crawl_shopee.settings')->get('accesstrade_tiki') . '?url=' . rawurlencode($tiki_link);
+
       if ($nids) {
         $node = Node::load(array_values($nids)[0]);
         //set value for field
@@ -40,6 +46,8 @@ class InsertProduct {
         $node->field_brand->value = $nid['brand'];
         $node->field_gallery = $nid['gallery'];
         $node->field_category->target_id = $term;
+        $node->field_price_tiki->value = $tiki_price;
+        $node->field_link_tiki->value = $accesstrade_tiki;
 
         $results['update'][] = $node->save();
         \Drupal::logger('crawl_shopee')->notice('Update node ' . $nid['name']);
@@ -62,6 +70,8 @@ class InsertProduct {
           'field_gallery' => $nid['gallery'],
           'field_brand' => $nid['brand'],
           'field_avatar' => $nid['avatar'],
+          'field_price_tiki' => $tiki_price,
+          'field_link_tiki' => $accesstrade_tiki,
           'body' => $description,
           'field_category'  => [
             ['target_id' => $term]

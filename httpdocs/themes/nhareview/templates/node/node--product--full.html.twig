@@ -154,6 +154,11 @@
                                         {% endif %}
                                     </div>
                                     <div class="buy-now"><a href="https://shopee.vn/mua-sach-nhanh-i.{{ node.field_id.value }}?{{ shopee_affiliate }}" rel="nofollow">{{ 'Mua ngay' | t }}</a></div>
+                                    {% if node.field_link_tiki.value %}
+                                    <div class="buy-now">
+                                        <a href="{{ node.field_link_tiki.value }}" rel="nofollow" target="_blank"><img style="height: 30px; margin-right: 5px;" src="https://salt.tikicdn.com/ts/upload/ae/f5/15/2228f38cf84d1b8451bb49e2c4537081.png" alt="tiki"><span class="currncy">₫</span> {{ (node.field_price_tiki.value) | number_format(0, '.', ',') }}</a>
+                                    </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
