@@ -18,24 +18,23 @@ class CrawlShopeeClientService {
    */
   public function __construct($http_client_factory) {
     $this->client = $http_client_factory->fromOptions([
-      'base_uri' => 'https://shopee.vn/api/v4/',
+      'base_uri' => 'https://shopee.vn/api/v4',
     ]);
   }
 
   /**
    * Get list item in Shopee
    *
-   * @param int $limit
-   * @param int $keyword
+   * @param string $keyword
    *
    * @return array
    */
   public function getListItem($keyword) {
-    $response = $this->client->get('search/search_items', [
+    $response = $this->client->get('/search/search_items', [
       'query' => [
         'by' => 'relevancy',
         'keyword' => $keyword,
-        'limit' => 10,
+        'limit' => 60,
         'newest' => 0,
         'order' => 'desc',
         'page_type' => 'search',
@@ -57,7 +56,7 @@ class CrawlShopeeClientService {
    * @return array
    */
   public function getItemDetail($itemId, $shopId) {
-    $response = $this->client->get('item/get', [
+    $response = $this->client->get('/item/get', [
       'query' => [
         'itemid' => $itemId,
         'shopid' => $shopId,

@@ -26,35 +26,26 @@ class InsertProduct {
       $term = array_values($terms)[0];
 
       $tiki = Json::decode(file_get_contents('https://tiki.vn/api/v2/products?limit=1&include=advertisement&aggregations=2&trackity_id=18af4b37-f4b3-f3a5-ed33-d1fe8a500b78&q=' . rawurlencode($nid['name']) . '&ref=hot-keyword'));
-      $tiki_link = 'https://tiki.vn/' . $tiki['data'][0]['url_key'] . '.html';
-      $tiki_price = $tiki['data'][0]['price'];
-      $accesstrade_tiki = \Drupal::config('crawl_shopee.settings')->get('accesstrade_tiki') . '?url=' . rawurlencode($tiki_link);
+      $tiki_link = '';
+      $tiki_price = '';
+      $accesstrade_tiki = '';
+      $tiki_name = '';
 
-      if ($nids) {
-        $node = Node::load(array_values($nids)[0]);
-        //set value for field
-        $node->title->value = $nid['name'];
-        $node->field_discount->value = $nid['discount'];
-        $node->field_historical_sold->value = $nid['historical_sold'];
-        $node->field_id->value = $nid['id'];
-        $node->field_liked_count->value = $nid['liked_count'];
-        $node->field_price->value = $nid['price'];
-        $node->field_price_before_discount->value = $nid['price_before_discount'];
-        $node->field_rating_star->value = $nid['rating_star'];
-        $node->field_shop_location->value = $nid['shop_location'];
-        $node->field_avatar->value = $nid['avatar'];
-        $node->field_brand->value = $nid['brand'];
-        $node->field_gallery = $nid['gallery'];
-        $node->field_category->target_id = $term;
-        $node->field_price_tiki->value = $tiki_price;
-        $node->field_link_tiki->value = $accesstrade_tiki;
+      if (!empty($tiki['data'])) {
+        $tiki_link = 'https://tiki.vn/' . $tiki['data'][0]['url_key'] . '.html';
+        $tiki_price = $tiki['data'][0]['price'];
+        $accesstrade_tiki = \Drupal::config('crawl_shopee.settings')->get('accesstrade_tiki') . '?url=' . rawurlencode($tiki_link);
+        $tiki_name = $tiki['data'][0]['name'];
+      }
+      
 
-        $results['update'][] = $node->save();
-        \Drupal::logger('crawl_shopee')->notice('Update node ' . $nid['name']);
-      } else {
-
-        $item_detail = \Drupal::service('crawl_shopee.crawl_shopee_client')->getItemDetail($nid['item_id'], $nid['shop_id']);
-        $description = $item_detail['data']['description'];
+      if (!$nids) {
+        // $item_detail = \Drupal::service('crawl_shopee.crawl_shopee_client')->getItemDetail($nid['item_id'], $nid['shop_id']);
+        $item_detail = Json::decode(file_get_contents('https://shopee.vn/api/v4/item/get?itemid=' . $nid['item_id'] . '&shopid=' . $nid['shop_id']));
+        $description = '';
+        if (!empty($item_detail['data'])) {
+          $description = $item_detail['data']['description'];
+        }
 
         $node = Node::create([
           'type'  => 'product',
@@ -72,14 +63,13 @@ class InsertProduct {
           'field_avatar' => $nid['avatar'],
           'field_price_tiki' => $tiki_price,
           'field_link_tiki' => $accesstrade_tiki,
-          'body' => $description,
+          'body' => $description . $tiki_name,
           'field_category'  => [
             ['target_id' => $term]
           ]
         ]);
         $results['create'][] = $node->save();
         \Drupal::logger('crawl_shopee')->notice('Create node ' . $nid['name']);
-
       }
       
     }
