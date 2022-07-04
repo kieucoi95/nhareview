@@ -64,6 +64,7 @@ body {
     padding: 25px;
     background-color: #fff;
     border: 1px solid #f4f4f4;
+    word-break: break-word;
 }
 
 nav.pager {
@@ -377,5 +378,9 @@ footer {
     .logo img {
         height: 26px;
         width: auto;
+    }
+
+    .block_content {
+        padding: 10px;
     }
 }
