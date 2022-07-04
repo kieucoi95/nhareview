@@ -35,7 +35,7 @@ class ConfigShopeeAffiliateForm extends ConfigFormBase {
     $config = $this->config('crawl_shopee.settings');
 
     $form['shopee_affiliate'] = [
-      '#type' => 'textfield',
+      '#type' => 'textarea',
       '#default_value' => $config->get('shopee_affiliate'),
       '#title' => $this->t('Shopee affiliate'),
     ];

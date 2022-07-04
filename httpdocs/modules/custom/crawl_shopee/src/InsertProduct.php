@@ -25,18 +25,18 @@ class InsertProduct {
       ->execute();
       $term = array_values($terms)[0];
 
-      $tiki = Json::decode(file_get_contents('https://tiki.vn/api/v2/products?limit=1&include=advertisement&aggregations=2&trackity_id=18af4b37-f4b3-f3a5-ed33-d1fe8a500b78&q=' . rawurlencode($nid['name']) . '&ref=hot-keyword'));
+      // $tiki = Json::decode(file_get_contents('https://tiki.vn/api/v2/products?limit=1&include=advertisement&aggregations=2&trackity_id=18af4b37-f4b3-f3a5-ed33-d1fe8a500b78&q=' . rawurlencode($nid['name']) . '&ref=hot-keyword'));
       $tiki_link = '';
       $tiki_price = '';
       $accesstrade_tiki = '';
       $tiki_name = '';
 
-      if (!empty($tiki['data'])) {
-        $tiki_link = 'https://tiki.vn/' . $tiki['data'][0]['url_key'] . '.html';
-        $tiki_price = $tiki['data'][0]['price'];
-        $accesstrade_tiki = \Drupal::config('crawl_shopee.settings')->get('accesstrade_tiki') . '?url=' . rawurlencode($tiki_link);
-        $tiki_name = $tiki['data'][0]['name'];
-      }
+      // if (!empty($tiki['data'])) {
+      //   $tiki_link = 'https://tiki.vn/' . $tiki['data'][0]['url_key'] . '.html';
+      //   $tiki_price = $tiki['data'][0]['price'];
+      //   $accesstrade_tiki = \Drupal::config('crawl_shopee.settings')->get('accesstrade_tiki') . '?url=' . rawurlencode($tiki_link);
+      //   $tiki_name = $tiki['data'][0]['name'];
+      // }
       
 
       if (!$nids) {
