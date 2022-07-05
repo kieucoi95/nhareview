@@ -305,8 +305,10 @@ footer {
 }
 
 .menu_product ul a::before {
-    content: url(../images/accepted.png);
+    content: '\f30b';
+    font-family: "Font Awesome 5 Pro";
     margin-right: 10px;
+    color: var(--main-color);
 }
 
 .menu_product ul a:hover {

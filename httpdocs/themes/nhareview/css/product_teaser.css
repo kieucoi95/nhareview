@@ -6,8 +6,8 @@
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-    line-height: 14px;
-    font-size: .75rem;
+    line-height: 16px;
+    font-size: .95rem;
     margin: 0;
     color: var(--main-color);
 }
