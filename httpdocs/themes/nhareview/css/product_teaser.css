@@ -6,7 +6,7 @@
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-    line-height: 16px;
+    line-height: 18px;
     font-size: .95rem;
     margin: 0;
     color: var(--main-color);
