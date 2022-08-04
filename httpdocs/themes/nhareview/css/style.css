@@ -74,15 +74,19 @@ nav.pager {
 }
 
 .pager__item {
-    background: #fff;
     margin: 0 2px;
     display: inline-flex;
-    border-radius: 3px;
-    padding: 4px 10px;
-    
 }
 
-.pager__item.is-active {
+.pager__item a,
+.pager__item--ellipsis {
+    background: #fff;
+    padding: 4px 10px;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+.pager__item.is-active a {
     background: var(--main-color);
 }
 
@@ -93,6 +97,11 @@ nav.pager {
 li.pager__item a {
     color: var(--main-color);
     font-weight: 500;
+}
+
+li.pager__item a:hover {
+    color: #fff;
+    background: var(--main-color)
 }
 
 .swiper:not(.gallery, .gallery_thumb) {
