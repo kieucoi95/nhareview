@@ -33,7 +33,7 @@ class InsertProductService {
               "header" => "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
           )
       )
-  );
+    );
     
     $limit = 10;
 
@@ -42,11 +42,9 @@ class InsertProductService {
     foreach ($term_data as &$category) {
 
       // $response = \Drupal::service('crawl_shopee.crawl_shopee_client')->getListItem($category['name']);
-
-      $response = Json::decode(file_get_contents('https://shopee.vn/api/v4/search/search_items?by=relevancy&keyword=' . $category['name'] . '&limit=60&newest=0&order=desc&page_type=search&scenario=PAGE_GLOBAL_SEARCH&version=2', false, $context));
-      // dump($response);
-      // die();
-      $ShopeeArr = [];
+      try {
+        $response = Json::decode(file_get_contents('https://shopee.vn/api/v4/search/search_items?by=relevancy&keyword=' . $category['name'] . '&limit=60&newest=0&order=desc&page_type=search&scenario=PAGE_GLOBAL_SEARCH&version=2', false, $context));
+        $ShopeeArr = [];
       if (!empty($response['items'])) {
         foreach ($response['items'] as &$value) {
           $item_id = $value['itemid'];
@@ -87,8 +85,9 @@ class InsertProductService {
         }
         $getResult = \Drupal\crawl_shopee\InsertProduct::InsertProduct($ShopeeArr);
       }
-      
-      
+      } catch (Exception $e) {
+        \Drupal::logger('crawl_shopee')->error('SEARCH ITEMS ERROR: //////' . $e->getMessage());
+      }
     }
   }
 }

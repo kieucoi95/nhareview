@@ -41,35 +41,48 @@ class InsertProduct {
 
       if (!$nids) {
         // $item_detail = \Drupal::service('crawl_shopee.crawl_shopee_client')->getItemDetail($nid['item_id'], $nid['shop_id']);
-        $item_detail = Json::decode(file_get_contents('https://shopee.vn/api/v4/item/get?itemid=' . $nid['item_id'] . '&shopid=' . $nid['shop_id']));
-        $description = '';
-        if (!empty($item_detail['data'])) {
-          $description = $item_detail['data']['description'];
-        }
+        try {
+          $context = stream_context_create(
+            array(
+                "http" => array(
+                    "header" => "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+                )
+            )
+          );
+          $item_detail = Json::decode(file_get_contents('https://shopee.vn/api/v4/item/get?itemid=' . $nid['item_id'] . '&shopid=' . $nid['shop_id'], false, $context));
+          $description = '';
+          if (!empty($item_detail['data'])) {
+            $description = $item_detail['data']['description'];
+          }
 
-        $node = Node::create([
-          'type'  => 'product',
-          'title' => $nid['name'],
-          'field_discount' => $nid['discount'],
-          'field_historical_sold' => $nid['historical_sold'],
-          'field_id' => $nid['id'],
-          'field_liked_count' => $nid['liked_count'],
-          'field_price' => $nid['price'],
-          'field_price_before_discount' => $nid['price_before_discount'],
-          'field_rating_star' => $nid['rating_star'],
-          'field_shop_location' => $nid['shop_location'],
-          'field_gallery' => $nid['gallery'],
-          'field_brand' => $nid['brand'],
-          'field_avatar' => $nid['avatar'],
-          'field_price_tiki' => $tiki_price,
-          'field_link_tiki' => $accesstrade_tiki,
-          'body' => $description . $tiki_name,
-          'field_category'  => [
-            ['target_id' => $term]
-          ]
-        ]);
-        $results['create'][] = $node->save();
-        \Drupal::logger('crawl_shopee')->notice('Create node ' . $nid['name']);
+          $node = Node::create([
+            'type'  => 'product',
+            'title' => $nid['name'],
+            'field_discount' => $nid['discount'],
+            'field_historical_sold' => $nid['historical_sold'],
+            'field_id' => $nid['id'],
+            'field_liked_count' => $nid['liked_count'],
+            'field_price' => $nid['price'],
+            'field_price_before_discount' => $nid['price_before_discount'],
+            'field_rating_star' => $nid['rating_star'],
+            'field_shop_location' => $nid['shop_location'],
+            'field_gallery' => $nid['gallery'],
+            'field_brand' => $nid['brand'],
+            'field_avatar' => $nid['avatar'],
+            'field_price_tiki' => $tiki_price,
+            'field_link_tiki' => $accesstrade_tiki,
+            'body' => $description . $tiki_name,
+            'field_category'  => [
+              ['target_id' => $term]
+            ]
+          ]);
+          $results['create'][] = $node->save();
+          \Drupal::logger('crawl_shopee')->notice('Create node ' . $nid['name']);
+        } catch (Exception $e) {
+          \Drupal::logger('crawl_shopee')->error('SEARCH ITEMS ERROR: //////' . $e->getMessage());
+        }
+        
+        
       }
       
     }

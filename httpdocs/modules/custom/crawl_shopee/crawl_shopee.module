@@ -35,11 +35,7 @@ function crawl_shopee_theme() {
 }
 
 function crawl_shopee_cron() {
-  \Drupal::logger('crawl_shopee')->notice('Start Job Insert Product... \n');
-
-  $response = \Drupal::service('crawl_shopee.insert_product')->insertProductData();
-
-  $result = \Drupal\crawl_shopee\InsertProduct::InsertProduct($ShopeeArr);
-  \Drupal::logger('crawl_shopee')->notice('\n Done Job Insert Product!');
-
+  \Drupal::logger('crawl_shopee')->notice('JOB CRAWLER PROD FROM SHOPEE STARTED');
+  \Drupal::service('crawl_shopee.insert_product')->insertProductData();
+  \Drupal::logger('crawl_shopee')->notice('JOB CRAWLER PROD FROM SHOPEE DONE');
 }
