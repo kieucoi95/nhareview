@@ -35,56 +35,67 @@ class InsertProductService {
       )
     );
     
-    $limit = 10;
-
+    $limit = 60;
+    $newest = 0;
     $result = [];
+    $current = 60;
 
     foreach ($term_data as &$category) {
 
       // $response = \Drupal::service('crawl_shopee.crawl_shopee_client')->getListItem($category['name']);
       try {
-        $response = Json::decode(file_get_contents('https://shopee.vn/api/v4/search/search_items?by=relevancy&keyword=' . $category['name'] . '&limit=60&newest=0&order=desc&page_type=search&scenario=PAGE_GLOBAL_SEARCH&version=2', false, $context));
-        $ShopeeArr = [];
-      if (!empty($response['items'])) {
-        foreach ($response['items'] as &$value) {
-          $item_id = $value['itemid'];
-          $shop_id = $value['shopid'];
-          $id = $value['shopid'] . '.' . $value['itemid'];
-          $avatar = $value['item_basic']['image'];
-          $name = \Drupal\crawl_shopee\InsertProduct::delete_all_between('[', ']', $value['item_basic']['name']);
-          $discount = $value['item_basic']['raw_discount'];
-          $historical_sold = $value['item_basic']['historical_sold'];
-          $price = $value['item_basic']['price'];
-          $price_before_discount = $value['item_basic']['price_before_discount'];
-          $liked_count = $value['item_basic']['liked_count'];
-          $rating_star = $value['item_basic']['item_rating']['rating_star'];
-          $shop_location = $value['item_basic']['shop_location'];
-          $brand = $value['item_basic']['brand'];
-          $gallery = $value['item_basic']['images'];
-          $category_id = $category['id'];
-          $category_value = $category['name'];
-    
-          $ShopeeArr[] = [
-            'shop_id' => $shop_id,
-            'item_id' => $item_id,
-            'id' => $id,
-            'avatar' => $avatar,
-            'name' => $name,
-            'historical_sold' => $historical_sold,
-            'discount' => $discount,
-            'price' => $price,
-            'price_before_discount' => $price_before_discount,
-            'liked_count' => $liked_count,
-            'rating_star' => $rating_star,
-            'shop_location' => $shop_location,
-            'brand' => $brand,
-            'gallery' => $gallery,
-            'category' => $category_id,
-            'category_name' => $category_value
-          ];
-        }
-        $getResult = \Drupal\crawl_shopee\InsertProduct::InsertProduct($ShopeeArr);
-      }
+        do {
+          $newest = $newest + 60;
+          \Drupal::logger('crawl_shopee')->notice('$newest=' . $newest . '/////  $current=' . $current);
+          $response = Json::decode(file_get_contents('https://shopee.vn/api/v4/search/search_items?by=relevancy&keyword=' . $category['name'] . '&limit=' . $limit . '&newest=' . $newest . '&order=desc&page_type=search&scenario=PAGE_GLOBAL_SEARCH&version=2', false, $context));
+          
+          $ShopeeArr = [];
+          if (!empty($response['items'])) {
+            \Drupal::logger('crawl_shopee')->notice('items=' . count($response['items']));
+            $current = count($response['items']);
+            foreach ($response['items'] as &$value) {
+              $item_id = $value['itemid'];
+              $shop_id = $value['shopid'];
+              $id = $value['shopid'] . '.' . $value['itemid'];
+              $avatar = $value['item_basic']['image'];
+              $name = \Drupal\crawl_shopee\InsertProduct::delete_all_between('[', ']', $value['item_basic']['name']);
+              $discount = $value['item_basic']['raw_discount'];
+              $historical_sold = $value['item_basic']['historical_sold'];
+              $price = $value['item_basic']['price'];
+              $price_before_discount = $value['item_basic']['price_before_discount'];
+              $liked_count = $value['item_basic']['liked_count'];
+              $rating_star = $value['item_basic']['item_rating']['rating_star'];
+              $shop_location = $value['item_basic']['shop_location'];
+              $brand = $value['item_basic']['brand'];
+              $gallery = $value['item_basic']['images'];
+              $category_id = $category['id'];
+              $category_value = $category['name'];
+
+              $ShopeeArr[] = [
+                'shop_id' => $shop_id,
+                'item_id' => $item_id,
+                'id' => $id,
+                'avatar' => $avatar,
+                'name' => $name,
+                'historical_sold' => $historical_sold,
+                'discount' => $discount,
+                'price' => $price,
+                'price_before_discount' => $price_before_discount,
+                'liked_count' => $liked_count,
+                'rating_star' => $rating_star,
+                'shop_location' => $shop_location,
+                'brand' => $brand,
+                'gallery' => $gallery,
+                'category' => $category_id,
+                'category_name' => $category_value
+              ];
+            }
+            $getResult = \Drupal\crawl_shopee\InsertProduct::InsertProduct($ShopeeArr);
+          } else {
+            $current = 0;
+          }
+        } while ($current >= $limit);
+        
       } catch (Exception $e) {
         \Drupal::logger('crawl_shopee')->error('SEARCH ITEMS ERROR: //////' . $e->getMessage());
       }
