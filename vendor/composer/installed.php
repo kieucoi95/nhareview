@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'f409557afc1b7b910858fbcfe4f500d06553048b',
+        'reference' => 'ce41e6cdba0270b20f9a07c8dbfaa8872d1ebf88',
         'name' => 'drupal/recommended-project',
         'dev' => true,
     ),
@@ -601,6 +601,15 @@
             'reference' => '1.0.0',
             'dev_requirement' => false,
         ),
+        'drupal/domain_301_redirect' => array(
+            'pretty_version' => '1.0.0-alpha0',
+            'version' => '1.0.0.0-alpha0',
+            'type' => 'drupal-module',
+            'install_path' => __DIR__ . '/../../httpdocs/modules/contrib/domain_301_redirect',
+            'aliases' => array(),
+            'reference' => '8.x-1.0-alpha0',
+            'dev_requirement' => false,
+        ),
         'drupal/dynamic_page_cache' => array(
             'dev_requirement' => false,
             'replaced' => array(
@@ -874,7 +883,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'f409557afc1b7b910858fbcfe4f500d06553048b',
+            'reference' => 'ce41e6cdba0270b20f9a07c8dbfaa8872d1ebf88',
             'dev_requirement' => false,
         ),
         'drupal/responsive_image' => array(
