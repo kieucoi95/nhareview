@@ -82,7 +82,7 @@
                 {% if node.field_discount.value > 0 %}
                 <div class="discount">{{ node.field_discount.value }}%<span>{{ 'Giảm' | t }}</span></div>
                 {% endif %}
-                <img src="https://cf.shopee.vn/file/{{ node.field_avatar.value }}" alt="{{ node.title.value }}" title="{{ node.title.value }}" width="200" height="200">
+                <img data-pc="https://cf.shopee.vn/file/{{ node.field_avatar.value }}" data-mb="https://cf.shopee.vn/file/{{ node.field_avatar.value }}_tn" alt="{{ node.title.value }}" title="{{ node.title.value }}" width="200" height="200">
             </a>
             <div class="inner">
                 <a href="{{ path('entity.node.canonical', {'node': node.id}) }}"><h3 class="title" title="{{ node.title.value }}">{{ node.title.value }}</h3></a>

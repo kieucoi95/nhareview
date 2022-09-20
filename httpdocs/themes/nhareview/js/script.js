@@ -1,6 +1,16 @@
 (function ($, Drupal, drupalSettings) {
 
     $(document).ready(function () {
+        $( ".product_teaser img" ).each(function( index ) {
+            var pc = $(this).attr('data-pc'),
+                mb = $(this).attr('data-mb');
+            if ($(window).width() > 480) {
+                $(this).attr('src', pc);
+            } else {
+                $(this).attr('src', mb);
+            }
+            
+        });
 
         stickySidebarNr();
         imageLazyLoading();
