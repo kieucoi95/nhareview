@@ -5,7 +5,7 @@
             var pc = $(this).attr('data-pc'),
                 mb = $(this).attr('data-mb');
             if ($(window).width() > 480) {
-                $(this).attr('src', pc);
+                $(this).attr('src', mb);
             } else {
                 $(this).attr('src', mb);
             }
